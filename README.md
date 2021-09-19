@@ -1,7 +1,5 @@
 # Bank Green Data Pipeline and Social Harvesting Code
 
-# Pipeline
-
 The Bank.Green pipeline is a tool for extract bank data from various sources, transforming them into `Bank` (`bank.py`) objects, and them loading them into an airtable for deployment on the bank.green website. The primary purposes of the pipeline are to identify banks, rate them, and to provide data on those banks for ingestion in the website.
 
 ## Running
@@ -34,7 +32,7 @@ Bank.Green accesses data from multiple websites and sources.
 
 ### BankTrack
 `sources/banktrack/banktrack.py`
-`Accessed by:` Private API
+`Accessed by:` Private API or Local CSV
 BankTrack supplies rich data on banks, the country that their headquarters is in, and data on what companies and projects the bank has financed.
 
 `TODO:` BankTrack has rich data on the fossil fuel investments of various banks, but this data is currently unused to generate bank ratings. This data could be used data to generate ratings.
@@ -48,7 +46,7 @@ The Banking on Climate Change report tracks fossil fuel investments of the 60 la
 
 ## Wikidata
 `sources/wikidata/wikidata.py`
-`Accessed by:` Public API
+`Accessed by:` Public API or local CSV
 Wikidata provides data on banks, bank names, and importantly, subsidiary information, which helps Bank.Green rate smaller banks based on their parent organization's rating. Wikidata can be messy, because some wikidatians add tag bank buildings (the physical structures) as banks (the legal entities)
 
 `TODO:` Filter out bank buildings using a better SPARQL query
@@ -64,7 +62,7 @@ The Global Alliance on Banking Values and B-Impact lists were manually combined,
 
 ### Custom Banks
 `sources/custombank/custombank.py`
-`accessed by:` Google Sheets API
+`accessed by:` Google Sheets API or Local CSV
 The Custom Bank spreadsheet is a private bank.green sheet used to specify preferred bank names, manually add countries to banks, manually assign subsidiary relationships, and to manually assign them ratings based on Bank.green research.
 
 `TODO:` The functionality of this sheet may eventually be migrated to an admin dashboard type system.
@@ -86,10 +84,17 @@ The https://Switchit.money guide researches banks fossil fuel financing investme
 ### MarketForces
 `sources/marketforces/marketforces.py`
 `accessed by:` Local CSV
+The US National Information Center which provides CSV's of bank data. This is a very rich and accurate data source, but its fidelity is greater than the project anticipates.
+
+`TODO:` Improve ingestion of banks, including ingesting additional bank details and work on matching USNIC banks to existing banks.
+
+
+### USNIC
+`sources/usnic/usnic.py`
+`accessed by:` Local CSV
 The Marketforces.org.au website researches Australian bank investments in fossil fuels. https://Bank.Green trusts MarketForces's research and uses it to guide ratings.
 
 `TODO:` Periodically manually update data
-
 
 ## Testing
 Some tests are written for the pipeline. Test using `python3 -m unittest *_test.py` Debug using `import pdb; pdb.set_trace()`.
@@ -102,5 +107,16 @@ There are a number of tasks for future development:
 - Ingestion of Open Courporates dataset, which should provide more subsidiary relationships and data on particular banks.
 
 
-# Social Harvesting Code
-`./social/` Contains code for scraping social links off of websites. It is mostly unused.
+# Contact
+
+We're friendly!
+
+Open an issue or email albert@bank.green to ask questions about the code, the product roadmap, etc.
+
+We welcome pull requests.
+
+# Product Roadmap
+
+This codebase is intended to eventually become a django application, facilitating manual cleanup of the available data.
+
+In the meantime, there are many small TO DO's (especially regarding the USNIC data) and integrations of additional data sources.
