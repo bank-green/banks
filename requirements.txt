@@ -1,0 +1,7 @@
+pandas
+airtable
+pycountry
+numpy
+python-dotenv
+qwikidata
+networkx
