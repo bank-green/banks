@@ -11,7 +11,7 @@ Install dependencies and open Jupyter-Lab
 
 The `pipeline.ipynb` notebook is used to extract data from various sources, transform it into the pipeline `Bank` format, and to load it to airtable. With proper credentials notebook can be run from top to bottom.
 
-Without credentials, it is not sometimes not possible to access remote data and is not possible to to upload to airtable. However, you still should be able to run the notebook with local data which will not differ greatly from remote.
+Without credentials, it is sometimes not possible to access remote data and is not possible to to upload to airtable. However, you still should be able to run the notebook with local data which will not differ greatly from remote.
 
 
 ## Repo Structure and main files
